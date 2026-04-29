@@ -30,7 +30,7 @@ components.html(f"""
 </script>
 """, height=0)
 
-st.title("Signal Scanner")
+
 
 import streamlit as st
 
