@@ -5,12 +5,23 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime, timezone
 import math
-
+import streamlit.components.v1 as components
 st.set_page_config(page_title="Signal Scanner")
 
-with open("google_analytics.html", "r") as f:
-    html_code = f.read()
-    components.html(html_code, height=0)
+# Google Analytics (GA4)
+GA_ID = "G-E49W7H3RQX"
+
+components.html(f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+
+  gtag('js', new Date());
+  gtag('config', '{GA_ID}');
+</script>
+""", height=0)
 
 import streamlit as st
 
