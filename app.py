@@ -32,9 +32,6 @@ components.html(f"""
 
 
 
-import streamlit as st
-
-st.set_page_config(page_title="Signal Scanner")
 
 
 st.set_page_config(
