@@ -8,17 +8,22 @@ import math
 
 st.set_page_config(page_title="Signal Scanner")
 
-st.markdown("""
+import streamlit as st
+
+st.set_page_config(page_title="Signal Scanner")
+
+GA_ID = "G-E49W7H3RQX"
+
+st.components.v1.html(f"""
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E49W7H3RQX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
-
-gtag('config', 'G-E49W7H3RQX');
+gtag('config', '{GA_ID}');
 </script>
-""", unsafe_allow_html=True)
+""", height=0)
 
 st.set_page_config(
     page_title="Signal Scanner",
