@@ -8,6 +8,10 @@ import math
 
 st.set_page_config(page_title="Signal Scanner")
 
+with open("google_analytics.html", "r") as f:
+    html_code = f.read()
+    components.html(html_code, height=0)
+
 import streamlit as st
 
 st.set_page_config(page_title="Signal Scanner")
