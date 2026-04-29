@@ -11,17 +11,26 @@ st.set_page_config(page_title="Signal Scanner")
 # Google Analytics (GA4)
 GA_ID = "G-E49W7H3RQX"
 
+GA_ID = "G-E49W7H3RQX"
+
 components.html(f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
 <script>
+  var script = document.createElement('script');
+  script.src = "https://www.googletagmanager.com/gtag/js?id={GA_ID}";
+  script.async = true;
+  document.head.appendChild(script);
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
 
-  gtag('js', new Date());
-  gtag('config', '{GA_ID}');
+  script.onload = function() {{
+    gtag('js', new Date());
+    gtag('config', '{GA_ID}');
+  }};
 </script>
 """, height=0)
+
+st.title("Signal Scanner")
 
 import streamlit as st
 
