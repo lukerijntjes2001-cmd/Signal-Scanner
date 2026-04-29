@@ -6,6 +6,20 @@ from plotly.subplots import make_subplots
 from datetime import datetime, timezone
 import math
 
+st.set_page_config(page_title="Signal Scanner")
+
+st.markdown("""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E49W7H3RQX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-E49W7H3RQX');
+</script>
+""", unsafe_allow_html=True)
+
 st.set_page_config(
     page_title="Signal Scanner",
     page_icon="Signal Scanner logo.png"
