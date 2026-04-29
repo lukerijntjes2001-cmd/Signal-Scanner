@@ -7,10 +7,42 @@ from datetime import datetime, timezone
 import math
 
 st.set_page_config(
-    page_title="Simple Trading App",
+    page_title="Signal Scanner",
+    page_icon="Signal Scanner logo.png"
+)
+
+
+st.set_page_config(
+    page_title="Crypto Signal Scanner",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+
+
+import streamlit as st
+import base64
+
+def get_base64(file_path):
+    with open(file_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+img_base64 = get_base64("Signal Scanner logo.png")
+
+st.markdown(f"""
+<style>
+.rounded-img {{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}}
+</style>
+
+<img src="data:image/png;base64,{img_base64}" class="rounded-img">
+""", unsafe_allow_html=True)
+
+
 
 st.markdown("""
 <style>
@@ -45,7 +77,7 @@ st.markdown("""
 }
 </style>
 
-<div class="big-title">Simple Trading</div>
+<div class="big-title">Crypto Signal Scanner</div>
 """, unsafe_allow_html=True)
 
 # =========================
@@ -511,7 +543,7 @@ def plot(df, coin,
 )
 
 #TABS
-tab1, tab2, tab3 = st.tabs(["**Crypto Dashboard**", "**Signal Guide**", "**About Simple Trading**"])
+tab1, tab2, tab3 = st.tabs(["**Crypto Dashboard**", "**Signal Guide**", "**About the Crypto Signal Scanner**"])
 
 # =========================
 # UI (STREAMLIT REPLACEMENT)
@@ -870,8 +902,8 @@ with tab1:
 st.markdown(
     """
     <p style='font-size:13px; font-style:italic; color:gray; text-align:center; margin-top:30px;'>
-    Disclaimer: All information provided by Simple Trading is for educational and informational purposes only and does not constitute financial advice. Trading cryptocurrencies involves risk and you may lose capital.
-    Notice: Simple Trading does not calculate live market prices itself. All price data is sourced from external providers. Always verify live prices with your broker or exchange before making any trading decisions.
+    Disclaimer: All information provided by Crypto Signal Scanner is for educational and informational purposes only and does not constitute financial advice. Trading cryptocurrencies involves risk and you may lose capital.
+    Notice: Crypto Signal Scanner does not calculate live market prices itself. All price data is sourced from external providers. Always verify live prices with your broker or exchange before making any trading decisions.
     </p>
     """,
     unsafe_allow_html=True
@@ -916,14 +948,14 @@ with tab2:
     
 with tab3:
 
-    st.title("About Simple Trading")
+    st.title("About Crypto Signal Scanner")
 
     st.markdown("""
-### What is Simple Trading?
+### What is the Crypto Signal Scanner?
 
-Simple Trading is a lightweight crypto analysis tool designed to give you **fast, clear, and actionable market insights** without unnecessary complexity.
+The Crypto Signal Scanner is a lightweight crypto analysis tool designed to give you **fast, clear, and actionable market insights** without unnecessary complexity.
 
-Unlike traditional platforms such as TradingView, which can feel overwhelming with advanced tools and cluttered interfaces, Simple Trading focuses on:
+Unlike traditional platforms such as TradingView, which can feel overwhelming with advanced tools and cluttered interfaces, the Crypto Signal Scanner focuses on:
 
 - Quick signal detection  
 - Clean, easy-to-read charts  
@@ -946,12 +978,12 @@ This tool is built for:
 
 ### **Disclaimer**
 
-Simple Trading is **not financial advice**.
+Crypto Signal Scanner is **not financial advice**.
 
 All signals, indicators, and analysis provided by this tool are for **educational and informational purposes only**.
 
 You are solely responsible for any trading decisions you make. Cryptocurrency trading involves significant risk, and you may lose all invested capital.
-Notice: Simple Trading does not calculate live market prices itself. All price data is sourced from external providers. Always verify live prices with your broker or exchange before making any trading decisions.                
+Notice: the Crypto Signal Scanner does not calculate live market prices itself. All price data is sourced from external providers. Always verify live prices with your broker or exchange before making any trading decisions.                
 """)    
 
     
