@@ -8,26 +8,12 @@ import math
 import streamlit.components.v1 as components
 st.set_page_config(page_title="Signal Scanner")
 
-# Google Analytics (GA4)
-GA_ID = "G-E49W7H3RQX"
-
-GA_ID = "G-E49W7H3RQX"
-
-components.html(f"""
-<script>
-  var script = document.createElement('script');
-  script.src = "https://www.googletagmanager.com/gtag/js?id={GA_ID}";
-  script.async = true;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-
-  script.onload = function() {{
-    gtag('js', new Date());
-    gtag('config', '{GA_ID}');
-  }};
+st.components.v1.html("""
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+data-cf-beacon='{"token": "8d71f54bfed04578ab0b3415a7a81cce"}'>
 </script>
+<!-- End Cloudflare Web Analytics -->
 """, height=0)
 
 
@@ -931,8 +917,7 @@ st.markdown(
     """
     <p style='font-size:13px; font-style:italic; color:gray; text-align:center; margin-top:30px;'>
     Disclaimer: All information provided by Crypto Signal Scanner is for educational and informational purposes only and does not constitute financial advice. Trading cryptocurrencies involves risk and you may lose capital.
-    Notice: Crypto Signal Scanner does not calculate live market prices itself. All price data is sourced from external providers. Always verify live prices with your broker or exchange before making any trading decisions.
-    </p>
+    Notice: Crypto Signal Scanner does not calculate live market prices itself. Market data provided by Kraken API. This website is not affiliated with Kraken.
     """,
     unsafe_allow_html=True
 )
@@ -1011,8 +996,11 @@ Crypto Signal Scanner is **not financial advice**.
 All signals, indicators, and analysis provided by this tool are for **educational and informational purposes only**.
 
 You are solely responsible for any trading decisions you make. Cryptocurrency trading involves significant risk, and you may lose all invested capital.
-Notice: the Crypto Signal Scanner does not calculate live market prices itself. All price data is sourced from external providers. Always verify live prices with your broker or exchange before making any trading decisions.                
+Notice: the Crypto Signal Scanner does not calculate live market prices itself. All price data is sourced from external providers. Always verify live prices with your broker or exchange before making any trading decisions.   
+Market data provided by Kraken API. This website is not affiliated with Kraken.                             
 """)    
+    
+
 
     
 
