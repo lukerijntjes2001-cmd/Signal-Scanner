@@ -6,14 +6,18 @@ from plotly.subplots import make_subplots
 from datetime import datetime, timezone
 import math
 import streamlit.components.v1 as components
-st.set_page_config(page_title="Signal Scanner")
 
-st.components.v1.html("""
-<!-- Cloudflare Web Analytics -->
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
-data-cf-beacon='{"token": "8d71f54bfed04578ab0b3415a7a81cce"}'>
+GA_ID = "G-E49W7H3RQX"
+
+components.html(f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{GA_ID}');
 </script>
-<!-- End Cloudflare Web Analytics -->
 """, height=0)
 
 
