@@ -5,11 +5,10 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime, timezone
 import math
-import streamlit.components.v1 as components
 
 GA_ID = "G-E49W7H3RQX"
 
-components.html(f"""
+st.markdown(f"""
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
 <script>
@@ -18,8 +17,7 @@ components.html(f"""
   gtag('js', new Date());
   gtag('config', '{GA_ID}');
 </script>
-""", height=0)
-
+""", unsafe_allow_html=True)
 
 
 
