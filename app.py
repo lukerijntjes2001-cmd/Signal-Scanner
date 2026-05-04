@@ -806,7 +806,7 @@ with tab1:
     return pd.DataFrame(results)
 
  st.markdown("---")
- st.markdown("## **Signal Scanner**")
+ st.markdown("## **Find ALL current signals**")
  
  
  scanner_tf = st.selectbox(
