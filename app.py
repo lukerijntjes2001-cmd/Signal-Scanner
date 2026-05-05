@@ -20,7 +20,7 @@ import requests
 import uuid
 
 MEASUREMENT_ID = "G-E49W7H3RQX"
-API_SECRET = "YOUR_API_SECRET"
+API_SECRET = "Aujz5AJ3QCGLE2Vvijj3fg"
 
 # 🔑 1. vaste user per browser sessie
 if "client_id" not in st.session_state:
@@ -55,10 +55,6 @@ send_event("page_view", {
 # ⭐ NEW USER SIGNAL (belangrijk!)
 if st.session_state.first_visit:
     send_event("first_visit")
-
-# UI
-st.title("Signal Scanner")
-st.write("Tracking users correctly...")
 
 
 
