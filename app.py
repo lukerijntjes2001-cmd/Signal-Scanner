@@ -9,34 +9,44 @@ import math
 import requests
 import uuid
 
-st.write("🔥 TRACKING CODE IS RUNNING")
+
+
+import streamlit as st
+import requests
+import uuid
 
 MEASUREMENT_ID = "G-E49W7H3RQX"
 API_SECRET = "Aujz5AJ3QCGLE2Vvijj3fg"
 
-def send_pageview():
+# 🔑 1. vaste user per sessie (BELANGRIJK voor "unique users")
+if "client_id" not in st.session_state:
+    st.session_state.client_id = str(uuid.uuid4())
+
+CLIENT_ID = st.session_state.client_id
+
+def send_event(event_name):
     url = f"https://www.google-analytics.com/mp/collect?measurement_id={MEASUREMENT_ID}&api_secret={API_SECRET}"
 
     payload = {
-        "client_id": str(uuid.uuid4()),  # unieke gebruiker
+        "client_id": CLIENT_ID,
         "events": [
             {
-                "name": "page_view",
+                "name": event_name,
                 "params": {
                     "page_location": "https://signal-scanner.com/",
-                    "page_title": "Signal Scanner"
+                    "engagement_time_msec": 1
                 }
             }
         ]
     }
 
-    try:
-        requests.post(url, json=payload, timeout=5)
-    except Exception as e:
-        print("GA error:", e)
+    requests.post(url, json=payload)
 
-# 👇 BELANGRIJK: dit moet echt runnen bij elke page load
-send_pageview()
+# 🔥 2. session + pageview (belangrijk voor LIVE users)
+send_event("session_start")
+send_event("page_view")
+
+
 
 
 
