@@ -9,6 +9,8 @@ import math
 import requests
 import uuid
 
+st.write("🔥 TRACKING CODE IS RUNNING")
+
 MEASUREMENT_ID = "G-E49W7H3RQX"
 API_SECRET = "Aujz5AJ3QCGLE2Vvijj3fg"
 
