@@ -5,19 +5,25 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime, timezone
 import math
+import requests
 
-GA_ID = "G-E49W7H3RQX"
+MEASUREMENT_ID = "G-E49W7H3RQX"
+API_SECRET = "YOUR_SECRET"
 
-st.markdown(f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{GA_ID}');
-</script>
-""", unsafe_allow_html=True)
+def send_pageview():
+    url = f"https://www.google-analytics.com/mp/collect?measurement_id={MEASUREMENT_ID}&api_secret={API_SECRET}"
+
+    payload = {
+        "client_id": "123456.123456",
+        "events": [{
+            "name": "page_view",
+            "params": {
+                "page_location": "https://signal-scanner.com/"
+            }
+        }]
+    }
+
+    requests.post(url, json=payload)
 
 
 
