@@ -5,25 +5,36 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime, timezone
 import math
+
 import requests
+import uuid
 
 MEASUREMENT_ID = "G-E49W7H3RQX"
-API_SECRET = "YOUR_SECRET"
+API_SECRET = "Aujz5AJ3QCGLE2Vvijj3fg"
 
 def send_pageview():
     url = f"https://www.google-analytics.com/mp/collect?measurement_id={MEASUREMENT_ID}&api_secret={API_SECRET}"
 
     payload = {
-        "client_id": "123456.123456",
-        "events": [{
-            "name": "page_view",
-            "params": {
-                "page_location": "https://signal-scanner.com/"
+        "client_id": str(uuid.uuid4()),  # unieke gebruiker
+        "events": [
+            {
+                "name": "page_view",
+                "params": {
+                    "page_location": "https://signal-scanner.com/",
+                    "page_title": "Signal Scanner"
+                }
             }
-        }]
+        ]
     }
 
-    requests.post(url, json=payload)
+    try:
+        requests.post(url, json=payload, timeout=5)
+    except Exception as e:
+        print("GA error:", e)
+
+# 👇 BELANGRIJK: dit moet echt runnen bij elke page load
+send_pageview()
 
 
 
