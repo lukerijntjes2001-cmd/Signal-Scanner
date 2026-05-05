@@ -15,38 +15,50 @@ import streamlit as st
 import requests
 import uuid
 
-MEASUREMENT_ID = "G-E49W7H3RQX"
-API_SECRET = "Aujz5AJ3QCGLE2Vvijj3fg"
+import streamlit as st
+import requests
+import uuid
 
-# 🔑 1. vaste user per sessie (BELANGRIJK voor "unique users")
+MEASUREMENT_ID = "G-E49W7H3RQX"
+API_SECRET = "YOUR_API_SECRET"
+
+# 🔑 1. vaste user per browser sessie
 if "client_id" not in st.session_state:
     st.session_state.client_id = str(uuid.uuid4())
+    st.session_state.first_visit = True
+else:
+    st.session_state.first_visit = False
 
 CLIENT_ID = st.session_state.client_id
 
-def send_event(event_name):
+def send_event(name, params=None):
     url = f"https://www.google-analytics.com/mp/collect?measurement_id={MEASUREMENT_ID}&api_secret={API_SECRET}"
 
     payload = {
         "client_id": CLIENT_ID,
         "events": [
             {
-                "name": event_name,
-                "params": {
-                    "page_location": "https://signal-scanner.com/",
-                    "engagement_time_msec": 1
-                }
+                "name": name,
+                "params": params or {}
             }
         ]
     }
 
     requests.post(url, json=payload)
 
-# 🔥 2. session + pageview (belangrijk voor LIVE users)
+# 🔥 session tracking
 send_event("session_start")
-send_event("page_view")
+send_event("page_view", {
+    "page_location": "https://signal-scanner.com/"
+})
 
+# ⭐ NEW USER SIGNAL (belangrijk!)
+if st.session_state.first_visit:
+    send_event("first_visit")
 
+# UI
+st.title("Signal Scanner")
+st.write("Tracking users correctly...")
 
 
 
